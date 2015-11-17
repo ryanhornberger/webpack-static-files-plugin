@@ -1,0 +1,15 @@
+{
+  "name": "webpack-static-files-plugin",
+  "version": "0.9.0",
+  "description": "Use Webpack to compile from static files to static files",
+  "author": "Ryan Hornberger <ryhornberger@gmail.com> (https://github.com/ryanhornberger)",
+  "license": "MIT",
+  "homepage": "https://github.com/ryanhornberger/webpack-static-files-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanhornberger/webpack-static-files-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ryanhornberger/webpack-static-files-plugin/issues"
+  }
+}
