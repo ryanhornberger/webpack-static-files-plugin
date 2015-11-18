@@ -1,5 +1,5 @@
 {
-  "name": "webpack-static-files-plugin",
+  "name": "static-files-plugin",
   "version": "0.9.0",
   "description": "Use Webpack to compile from static files to static files",
   "author": "Ryan Hornberger <ryhornberger@gmail.com> (https://github.com/ryanhornberger)",
@@ -11,5 +11,30 @@
   },
   "bugs": {
     "url": "https://github.com/ryanhornberger/webpack-static-files-plugin/issues"
+  },
+  "main": "lib/StaticFilesPlugin.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha -R test/plugin_spec.js --reporter spec",
+    "webpack": "node_modules/webpack/bin/webpack.js --config ./test/plugin_spec/webpack.config.js"
+  },
+  "dependencies": {
+    "fs-extra": "^0.26.2",
+    "path": "^0.12.7",
+    "tapable": "^0.1.9",
+    "watchpack": "^0.2.9",
+    "webpack": "^1.12.6",
+    "webpack-core": "^0.6.8"
+  },
+  "devDependencies": {
+    "babel": "^4.6.5",
+    "babel-core": "^5.6.15",
+    "babel-loader": "^5.2.1",
+    "chai": "^3.4.1",
+    "file-loader": "^0.8.4",
+    "mocha": "^2.3.4",
+    "node-sass": "^3.4.2",
+    "nunjucks-html-loader": "^1.0.0",
+    "path": "^0.12.7",
+    "sass-loader": "^3.1.1"
   }
 }
