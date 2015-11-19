@@ -78,6 +78,10 @@ Below is an example configuration that supports the following conversions:
                                 './source'
                             ]
                         })
+                },
+                {
+                    test: /\.(?=[^.]*$)(?!(jsx?|scss|nunj)).*$/, //catch all remaining files and copy them over as they are
+                    loader: 'file?context=' + appPath + '&name=[path][name].[ext]'
                 }
             ]
         }
