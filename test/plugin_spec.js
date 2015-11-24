@@ -7,6 +7,11 @@ var fse = require('fs-extra')
 var webpack = require('webpack');
 var webpackConfig = require('./plugin_spec/webpack.config.js');
  
+var newFileToWatch1 = path.join(__dirname, 'plugin_spec', 'source', 'index-copy.nunj');
+var newFileToWatch2 = path.join(__dirname, 'plugin_spec', 'source', 'index-copy.jsx');
+fse.removeSync(newFileToWatch1);
+fse.removeSync(newFileToWatch2);
+
 describe('Run a webpack build with the plugin', function(){
 
 	it('should parse an input directory system, return an output directory', function(done){
@@ -36,10 +41,7 @@ describe('Run a webpack build with the plugin', function(){
 		var hasRun = false;
 		var compiler = webpack(webpackConfig);
 		var originalFilePath = path.join(__dirname, 'plugin_spec', 'source', 'index.nunj');
-		var newFilePath = path.join(__dirname, 'plugin_spec', 'source', 'index-copy.nunj');
 		var resultCount = 0;
-
-		fse.removeSync(newFilePath);
 
 		var resultHandler = function(stats) {
 			if (!hasRun) {
@@ -65,22 +67,27 @@ describe('Run a webpack build with the plugin', function(){
 				
 			step2Hash = stats.compilation.hash;
 			
-			fse.copySync(originalFilePath, newFilePath);
+			fse.copySync(originalFilePath, newFileToWatch1);
 		};
 
 		var step3Hash = null;
 		var step3 = function(stats) {
 			expect(stats).to.be.an('object');
+
 			step3Hash = stats.compilation.hash;
+
+			fse.copySync(originalFilePath, newFileToWatch2);
 		};
 
 		var step4 = function(stats) {
 			expect(stats).to.be.an('object');
 		
-			expect(step2Hash).to.not.equal(stats.compilation.hash);
-			expect(step3Hash).to.equal(stats.compilation.hash);
+			expect(step2Hash).to.not.equal(step3Hash);
+			expect(step3Hash).to.not.equal(stats.compilation.hash);
 			
-			fse.removeSync(newFilePath);
+			fse.removeSync(newFileToWatch1);
+			fse.removeSync(newFileToWatch2);
+
 			hasRun = true;
 			done();
 		};

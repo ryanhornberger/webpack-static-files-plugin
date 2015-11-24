@@ -4,9 +4,11 @@ var path = require('path');
 var fse = require('fs-extra');
 var StaticFilesPlugin = require('../../lib/StaticFilesPlugin');
 
-var sourceDir = path.join(__dirname, 'source');
-var destinationDir = path.join(__dirname, 'compiled');
-var moduleName = '_static';
+var appDir = path.join(__dirname);
+var sourceDir = path.join(appDir, 'source');
+var destinationDir = path.join(appDir, 'compiled');
+
+var moduleName = 'source';
 
 fse.removeSync(destinationDir);
 
@@ -20,9 +22,10 @@ module.exports = {
 	},
 
 	plugins: [
-        new StaticFilesPlugin(
+		new StaticFilesPlugin(
         	sourceDir,
-        	moduleName,
+        	appDir,
+            moduleName,
         	[
         		/\.jsx$/,
         		/\.scss$/,
@@ -40,7 +43,7 @@ module.exports = {
 			{ 
 				test: /\.jsx$/, 
 				exclude: /(node_modules|bower_components)/,
-				loader: 'file?context=' + path.join(sourceDir) + '&name=[path][name].js!babel'
+				loader: 'babel'
 			},
 
 			// Sass enty points
