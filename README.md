@@ -1,7 +1,13 @@
 Webpack Static Files Plugin
 ===============================================================================
-
 Use Webpack as a static files compiler!
+
+[![NPM version][npm-image]][npm-url]
+[![Github license][github-license-image]][github-url]
+[![Github stars][github-image]][github-url]
+
+Introduction
+------------
 
 Use the StaticFilesPlugin just like any other webpack plugin. You tell it the source directory, a name for the entry module, and the criteria patterns of files you want it to watch for. 
 
@@ -128,4 +134,8 @@ Todo for 1.0
 * Remove the need for the file-loader
 * Test more!
 
-
+[npm-url]: https://www.npmjs.com/package/static-files-plugin
+[npm-image]: https://img.shields.io/npm/v/static-files-plugin.svg
+[github-url]: https://github.com/ryanhornberger/webpack-static-files-plugin
+[github-image]: https://img.shields.io/github/stars/ryanhornberger/webpack-static-files-plugin.svg?style=social&label=Star
+[github-license-image]: https://img.shields.io/github/license/ryanhornberger/webpack-static-files-plugin.svg
